@@ -13,13 +13,23 @@ Economic indicators such as GDP per capita, inflation rate, and unemployment rat
 The Project requires Python version 3.11.2 (https://www.python.org/downloads/release/python-3112/)
 to be installed along with the following packages for smooth functioning:
 
-requests
-warnings
-numpy
-pandas
-matplotlib
-seaborn
-statsmodels
+- requests
+- warnings
+- numpy
+- pandas
+- matplotlib
+- seaborn
+- statsmodels
+
+```python
+%pip install requests
+%pip install warnings
+%pip install numpy
+%pip install pandas
+%pip install matplotlib.pyplot
+%pip install seaborn
+%pip install statsmodels
+```
 
 ## Usage
 
