@@ -9,6 +9,17 @@ This project investigates the relationship between fertility rates and economic 
 
 Economic indicators such as GDP per capita, inflation rate, and unemployment rate by country are sourced from the [World Bank API](https://api.worldbank.org/v2/countries/all/indicators/) for the time period 1980 - 2020
 
+## Installation and Requirements
+The Project requires Python version 3.11.2 (https://www.python.org/downloads/release/python-3112/)
+to be installed along with the following packages for smooth functioning:
+
+requests
+warnings
+numpy
+pandas
+matplotlib
+seaborn
+statsmodels
 
 ## Usage
 
