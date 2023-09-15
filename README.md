@@ -10,8 +10,9 @@ This project investigates the relationship between fertility rates and economic 
 Economic indicators such as GDP per capita, inflation rate, and unemployment rate by country are sourced from the [World Bank API](https://api.worldbank.org/v2/countries/all/indicators/) for the time period 1980 - 2020
 
 ## Installation and Requirements
-The Project requires Python version 3.11.2 (https://www.python.org/downloads/release/python-3112/)
-to be installed along with the following packages for smooth functioning:
+1. Install Python version 3.11.2 (https://www.python.org/downloads/release/python-3112/)
+2. Clone Repository : git clone https://github.com/pragyaIES29/FinalProject2023.git
+3. Install following packages :
 
 - requests
 - warnings
@@ -33,102 +34,68 @@ to be installed along with the following packages for smooth functioning:
 
 ## Usage
 
+Codes have been structured and laid out in the sequence they should be run for analysis. Below is a sample of each type of visual and analysis output :
+
 For Data Visualizations :
 
-```python
-plt.figure(figsize=(12, 8))
+1. Line Charts
+![9b8be710-cf3b-4460-938c-decda59f012e](https://github.com/pragyaIES29/FinalProject2023/assets/125395710/29aaec88-8f91-4d0b-b99a-59e6705b1f8f)
+2. Heat Map :
+   ![7687c627-c34f-4b80-8d2a-95a987f35d59](https://github.com/pragyaIES29/FinalProject2023/assets/125395710/a4a552d7-fcf6-4d99-822e-253f2d69af80)
 
-# Plot each country's fertility rate over Year
-for country in fertility_rate_df.columns:
-    plt.plot(fertility_rate_df.index, fertility_rate_df[country], label=country)
+3. scatter plot:
+   ![8991cfb6-8f87-4ac9-8fb0-63d40e0331c4](https://github.com/pragyaIES29/FinalProject2023/assets/125395710/a82efeef-ee79-4cff-a02b-5fa3bf1d6f45)
 
-# Add labels and title
-plt.xlabel("Year")
-plt.ylabel("Fertility Rate")
-plt.title("Fertility Rates Over Year by Country")
-plt.legend()
-plt.xticks(rotation=45)
-plt.tight_layout()
 
-# Show the plot
-plt.show()
+5. Box Plots
+![2b8a6eb6-db97-4ec9-bd2a-5c7c9a589e79](https://github.com/pragyaIES29/FinalProject2023/assets/125395710/80d6a32c-60cd-4dc1-b310-a0cbc574e71c)
 
-```
+
 For Regressions :
 
-```python
-# Create DataFrames from the indicator data
-fertility_df = pd.DataFrame(cleaned_data_by_indicator["Fertility Rate"])
-gdp_per_capita_df = pd.DataFrame(cleaned_data_by_indicator["GDP per Capita"])
+1. Linear Regression
+![9ce8e14b-2704-416e-8e0f-44f402e89809](https://github.com/pragyaIES29/FinalProject2023/assets/125395710/03a545ca-caf7-4dad-84df-0301d7d3408e)
 
-# Merge the DataFrames on "Country" and "Year"
-merged_df = pd.merge(fertility_df, gdp_per_capita_df, on=["Country", "Year"])
+2. Multiple Regression
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:         Fertility_Rate   R-squared:                       0.324
+Model:                            OLS   Adj. R-squared:                  0.321
+Method:                 Least Squares   F-statistic:                     115.9
+Date:                Thu, 14 Sep 2023   Prob (F-statistic):           2.56e-61
+Time:                        23:22:13   Log-Likelihood:                -1205.8
+No. Observations:                 729   AIC:                             2420.
+Df Residuals:                     725   BIC:                             2438.
+Df Model:                           3                                         
+Covariance Type:            nonrobust                                         
+=====================================================================================
+                        coef    std err          t      P>|t|      [0.025      0.975]
+-------------------------------------------------------------------------------------
+const                 4.4217      0.134     32.898      0.000       4.158       4.686
+GDP_per_Capita    -6.987e-05   5.08e-06    -13.744      0.000   -7.98e-05   -5.99e-05
+Inflation_Rate       -0.0033      0.002     -1.547      0.122      -0.007       0.001
+Unemployment_Rate    -0.1348      0.020     -6.625      0.000      -0.175      -0.095
+==============================================================================
+Omnibus:                      183.477   Durbin-Watson:                   0.056
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):               42.842
+Skew:                           0.300   Prob(JB):                     4.98e-10
+Kurtosis:                       1.975   Cond. No.                     3.61e+04
+==============================================================================
 
-# Extract variables for the linear regression
-x = merged_df["Value_y"]  # GDP per Capita
-y = merged_df["Value_x"]  # Fertility Rate
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+[2] The condition number is large, 3.61e+04. This might indicate that there are
+strong multicollinearity or other numerical problems.
 
-# Perform linear regression using scipy's linregress function
-slope, intercept, r_value, p_value, std_err = stats.linregress(x, y)
+For Time Series Analysis :
 
-# Create the regression line
-regression_line = slope * x + intercept
+1. Time series decomposition
+   ![31137781-a4d3-4616-8301-169e7673e0a4](https://github.com/pragyaIES29/FinalProject2023/assets/125395710/53fdf824-2c6f-4a97-9c2f-be23d2e7dba2)
 
-# Print the regression results
-print(f"Slope: {slope:.4f}")
-print(f"Intercept: {intercept:.4f}")
-print(f"R-squared: {r_value**2:.4f}")
-print(f"P-value: {p_value:.4f}")
 
-# Set up the scatter plot figure
-plt.figure(figsize=(10, 8))
+3. Forecasting using VaR and ARIMA
 
-# Create scatter plot of the data
-plt.scatter(x, y, label="Data", alpha=0.7)
-
-# Plot the regression line
-plt.plot(x, regression_line, color="red", label="Regression Line")
-
-# Add labels and title
-plt.xlabel("GDP per Capita")
-plt.ylabel("Fertility Rate")
-plt.title("Fertility Rates vs. GDP per Capita")
-
-# Add legend
-plt.legend()
-
-# Show the plot
-plt.tight_layout()
-plt.show()
-```
-For time series analysis:
-
-```python
-# Load the cleaned data for Fertility Rate and GDP per Capita
-fertility_data = cleaned_data_by_indicator["Fertility Rate"]
-gdp_data = cleaned_data_by_indicator["GDP per Capita"]
-
-# Create dataframes for the fertility rate and GDP per Capita
-fertility_df = pd.DataFrame(fertility_data)
-gdp_df = pd.DataFrame(gdp_data)
-
-# Merge the two dataframes based on the "Country" and "Year" columns
-merged_df = pd.merge(fertility_df, gdp_df, on=["Country", "Year"], how="inner")
-
-# Define the dependent variable (y) and the independent variable (X)
-y = merged_df["Value_x"]  # Fertility Rate
-X = merged_df["Value_y"]  # GDP per Capita
-
-# Add a constant to the independent variable matrix
-X = sm.add_constant(X)
-
-# Fit a linear regression model
-model = sm.OLS(y, X).fit()
-
-# Display the regression results
-print(model.summary())
-```
-
+![8214347a-260e-4315-a29a-ae8dfe9961b3](https://github.com/pragyaIES29/FinalProject2023/assets/125395710/cbc61d1a-e708-4e71-8b28-be5e3c08b5fa)
 
 ## Analysis Techniques
 
