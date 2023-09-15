@@ -57,35 +57,8 @@ For Regressions :
 ![9ce8e14b-2704-416e-8e0f-44f402e89809](https://github.com/pragyaIES29/FinalProject2023/assets/125395710/03a545ca-caf7-4dad-84df-0301d7d3408e)
 
 2. Multiple Regression
-                            OLS Regression Results                            
-==============================================================================
-Dep. Variable:         Fertility_Rate   R-squared:                       0.324
-Model:                            OLS   Adj. R-squared:                  0.321
-Method:                 Least Squares   F-statistic:                     115.9
-Date:                Thu, 14 Sep 2023   Prob (F-statistic):           2.56e-61
-Time:                        23:22:13   Log-Likelihood:                -1205.8
-No. Observations:                 729   AIC:                             2420.
-Df Residuals:                     725   BIC:                             2438.
-Df Model:                           3                                         
-Covariance Type:            nonrobust                                         
-=====================================================================================
-                        coef    std err          t      P>|t|      [0.025      0.975]
--------------------------------------------------------------------------------------
-const                 4.4217      0.134     32.898      0.000       4.158       4.686
-GDP_per_Capita    -6.987e-05   5.08e-06    -13.744      0.000   -7.98e-05   -5.99e-05
-Inflation_Rate       -0.0033      0.002     -1.547      0.122      -0.007       0.001
-Unemployment_Rate    -0.1348      0.020     -6.625      0.000      -0.175      -0.095
-==============================================================================
-Omnibus:                      183.477   Durbin-Watson:                   0.056
-Prob(Omnibus):                  0.000   Jarque-Bera (JB):               42.842
-Skew:                           0.300   Prob(JB):                     4.98e-10
-Kurtosis:                       1.975   Cond. No.                     3.61e+04
-==============================================================================
+<img width="535" alt="image" src="https://github.com/pragyaIES29/FinalProject2023/assets/125395710/7d3a8e8b-0de1-4e61-8c8d-f6aa6869447e">
 
-Notes:
-[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
-[2] The condition number is large, 3.61e+04. This might indicate that there are
-strong multicollinearity or other numerical problems.
 
 For Time Series Analysis :
 
